@@ -5,7 +5,7 @@ class TagsController < ApplicationController
 	end
 
 	def edit
-  	  @tag = Tag.find(params[:id])
+  	  	@tag = Tag.find(params[:id])
   	end
 
 	def new

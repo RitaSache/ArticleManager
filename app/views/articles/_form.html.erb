@@ -23,6 +23,10 @@
     <%= form.label :text %><br>
     <%= form.text_area :text %>
   </p>
+
+  <p>
+    <%= form.select(:tags, Tag.all.pluck(:tag, :id), {}, { multiple: true }) %>
+  </p>
  
   <p>
     <%= form.submit %>
