@@ -1,0 +1,9 @@
+<%= form_with model: @tag, local: true do |form| %>
+  <p>
+    <%= form.label :tag %><br>
+    <%= form.text_field :tag %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

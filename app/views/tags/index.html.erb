@@ -1,0 +1,12 @@
+<h1>Listing Tags</h1>
+ 
+<table>
+	<% @tags.each do |tag| %>
+	    <tr>
+	      <td><%= tag.tag %></td>
+	      <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+	    </tr>
+	  <% end %>
+<%= link_to 'New Tag', new_tag_path %> |
+<%= link_to 'Back', articles_path %>
+</table>
