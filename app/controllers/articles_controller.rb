@@ -52,6 +52,16 @@ class ArticlesController < ApplicationController
 	  redirect_to articles_path
 	end	
 
+	def search
+	  if request.post? and !params[:title].empty?
+	    @articles = Article.where("title LIKE ?", "%#{params[:title]}%")
+	  else
+			@articles = Article.none
+	  end
+	  # If GET, @articles = Article.none
+	  # If POST, @articles = Article.where
+	end
+
 	private
   		def article_params
     	params.require(:article).permit(:title, :text)
