@@ -1,8 +1,8 @@
 <h1>Search Articles</h1>
 
 <%= form_tag("/articles/search", method: "post") do %>
-  <%= label_tag(:title, "Search for:") %>
-  <%= text_field_tag(:title) %>
+  <%= label_tag(:query, "Search for:") %>
+  <%= text_field_tag(:query) %>
   <%= submit_tag("Search") %>
 <% end %>
 
