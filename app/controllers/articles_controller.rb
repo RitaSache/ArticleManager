@@ -66,6 +66,21 @@ class ArticlesController < ApplicationController
 	  # If POST, @articles = Article.where
 	end
 
+	def Report
+
+		report = CSV.generate(headers: true) do |csv|
+			csv << ['id', 'title', 'tags']
+			Article.all.each do |article|
+				tags = article.tags.pluck(:tag).join(',')
+				csv << article.attributes.values_at('id', 'title').push(tags)
+			end
+		end
+		
+		respond_to do |format|
+			format.csv { send_data report }
+		end	
+	end
+
 	private
   		def article_params
     	params.require(:article).permit(:title, :text)
