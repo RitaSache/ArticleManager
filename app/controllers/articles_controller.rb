@@ -75,9 +75,15 @@ class ArticlesController < ApplicationController
 
 		report = CSV.generate(headers: true) do |csv|
 			csv << ['id', 'title', 'tags']
-			Article.includes(:tags).left_outer_joins(:tags).distinct.all.each do |article|
-				tags = article.tags.pluck(:tag).join(',')
-				csv << article.attributes.values_at('id', 'title').push(tags)
+
+			articlesWithTags = Article
+				.select('articles.id, title, GROUP_CONCAT(tag) as tags')
+				.left_outer_joins(:tags)
+				.group(:id)
+				.all
+
+			articlesWithTags.each do |article|
+				csv << article.attributes.values_at('id', 'title', 'tags')
 			end
 		end
 		
