@@ -15,12 +15,6 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
-		# logger.debug "Params: #{params.inspect}"
-		tag_references = params[:article][:tags]
-	  		.select { |t| t != "" } 
-	  		.map { |id| TagReference.new(article: @article, tag: Tag.find(id)) }
-
-	  	@article.tag_references = tag_references
 
  	 	if @article.save
     		redirect_to @article
@@ -31,13 +25,6 @@ class ArticlesController < ApplicationController
 
 	def update
 	  @article = Article.find(params[:id])
-	  logger.debug "Article Params: #{article_params.inspect}"
-	  tag_references = params[:article][:tags]
-	  		.select { |t| t != "" } 
-	  		.map { |id| TagReference.new(article: @article, tag: Tag.find(id)) }
-
-	  @article.tag_references = tag_references
-	  
 	 
 	  if @article.update(article_params)
 	    redirect_to @article
@@ -94,6 +81,6 @@ class ArticlesController < ApplicationController
 
 	private
   		def article_params
-    	params.require(:article).permit(:title, :text, :author_id)
+    	params.require(:article).permit(:title, :text, :author_id, tag_ids:[])
   	end
 end
