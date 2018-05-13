@@ -1,5 +1,6 @@
  <table>
   <tr>
+    <th>Author</th>
     <th>Title</th>
     <th>Text</th>
     <th>Tags</th>
@@ -9,7 +10,7 @@
  
   <% @articles.each do |article| %>
     <tr>
-      <td><%= article.author.pluck(:author) %></td>
+      <td><%= article.author.name %></td> 
       <td><%= article.title %></td>
       <td><%= article.text %></td>
       <td><%= article.tags.pluck(:tag).join(', ') %></td>
