@@ -9,6 +9,7 @@
  
   <% @articles.each do |article| %>
     <tr>
+      <td><%= article.author.pluck(:author) %></td>
       <td><%= article.title %></td>
       <td><%= article.text %></td>
       <td><%= article.tags.pluck(:tag).join(', ') %></td>

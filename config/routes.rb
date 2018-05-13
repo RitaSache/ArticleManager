@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :authors
   get 'welcome/index'
 
   get '/articles/search', to: 'articles#search'
