@@ -1,7 +1,7 @@
 <h1>Listing articles</h1>
 
 <%= link_to 'New article', new_article_path %> |
-<%= link_to 'All Tags', tags_path %>
+<%= link_to 'All Tags', tags_path %> | <%= link_to 'Search Articles', :articles_search %>
 
 <%= render 'list' %>
 <%= link_to 'Export to CSV', :articles_Report %>

@@ -60,10 +60,10 @@ class ArticlesController < ApplicationController
 	def search
 	  if request.post? and !params[:query].empty?
 	    @articles = Article
-	    	.joins(:tags)
+	    	.left_outer_joins(:tags)
 	    	.where("title LIKE ? OR text LIKE ? OR tag LIKE ? ", 
 	    		"%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%"
-    		).group('id')
+    		).group(:id)
 	  else
 		@articles = Article.none
 	  end
