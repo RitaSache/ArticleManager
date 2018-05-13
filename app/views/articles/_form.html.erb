@@ -27,6 +27,10 @@
   <p>
     <%= form.select(:tags, Tag.all.pluck(:tag, :id), {}, { multiple: true }) %>
   </p>
+
+  <p>
+  <%= form.select(:author_id, Author.all.pluck(:name, :id)) %>
+  </p>
  
   <p>
     <%= form.submit %>
