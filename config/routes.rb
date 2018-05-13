@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/articles/search', to: 'articles#search'
   post '/articles/search', to: 'articles#search'
   get '/articles/Report', to: 'articles#Report', defaults: { format: 'csv' }
+  get '/articles/LastBatch', to: 'articles#LastBatch', defaults: { format: 'csv' }
+
   
   resources :articles do
   	resources :comments

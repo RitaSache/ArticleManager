@@ -79,6 +79,30 @@ class ArticlesController < ApplicationController
 		end	
 	end
 
+	def LastBatch
+
+		report = CSV.generate(headers: true) do |csv|
+			csv << ['id', 'title', 'tags']
+
+			articlesWithTags = Article
+				.select('articles.id, title, GROUP_CONCAT(tag) as tags')
+				.left_outer_joins(:tags)
+				.where('articles.created_at >= (?)', 
+					Article.select('DATE(created_at)').order(created_at: :desc).limit(1)
+				)
+				.group(:id)
+				.all
+
+			articlesWithTags.each do |article|
+				csv << article.attributes.values_at('id', 'title', 'tags')
+			end
+		end
+		
+		respond_to do |format|
+			format.csv { send_data report }
+		end	
+	end
+
 	private
   		def article_params
     	params.require(:article).permit(:title, :text, :author_id, tag_ids:[])
