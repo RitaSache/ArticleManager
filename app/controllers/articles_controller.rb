@@ -16,6 +16,11 @@ class ArticlesController < ApplicationController
 	def create
 		@article = Article.new(article_params)
 		# logger.debug "Params: #{params.inspect}"
+		tag_references = params[:article][:tags]
+	  		.select { |t| t != "" } 
+	  		.map { |id| TagReference.new(article: @article, tag: Tag.find(id)) }
+
+	  	@article.tag_references = tag_references
 
  	 	if @article.save
     		redirect_to @article
@@ -70,7 +75,7 @@ class ArticlesController < ApplicationController
 
 		report = CSV.generate(headers: true) do |csv|
 			csv << ['id', 'title', 'tags']
-			Article.all.each do |article|
+			Article.includes(:tags).left_outer_joins(:tags).distinct.all.each do |article|
 				tags = article.tags.pluck(:tag).join(',')
 				csv << article.attributes.values_at('id', 'title').push(tags)
 			end
