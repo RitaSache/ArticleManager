@@ -1,8 +1,8 @@
 # README
 
 * To get the application up and running:
-install Ruby version 2.3.3p222
-install Rails version 5.1.6
+install Ruby version 2.3.3p222,
+install Rails version 5.1.6,
 install MySQL version 14.14
 
 * clone the repository to your computer, cd into the directory
@@ -27,4 +27,4 @@ localhost:3000
 ```
 
 * upon request for authorization for manipulating articles, authors, tags, and comments, 
-use username is 'rita' and the password is "secret"
+use username 'rita' and the password "secret"
