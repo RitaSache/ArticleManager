@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* To get the application up and running:
+install Ruby version 2.3.3p222
+install Rails version 5.1.6
 
-Things you may want to cover:
+clone the repository to your computer, cd into the directory
 
-* Ruby version
+* run on terminal to create the ArticleManager database:
 
-* System dependencies
+bin/rails db:migrate
 
-* Configuration
+* to access the database, the username is 'root'. If you need to change the 
+username, go to the config/database.yml file in my project and change the username, then update 
+username and password.
 
-* Database creation
+* run the server with command:
+bin/rails server
 
-* Database initialization
+* go to your browser and type:
+localhost:3000
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* upon request for authorization for manipulating articles, authors, tags, and comments, 
+use username is 'rita' and the password is "secret"
