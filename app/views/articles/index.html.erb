@@ -3,8 +3,12 @@
 <%= link_to 'New article', new_article_path %> | <%= link_to 'New author', new_author_path %>
 | <%= link_to 'All Tags', tags_path %> | <%= link_to 'All Authors', authors_path %> 
 | <%= link_to 'Search Articles', :articles_search %>
+<br>
+<br>
 
 <%= render 'list' %>
+<br>
+<br>
 <%= link_to 'Export All to CSV', :articles_Report %> | <%= link_to 'Last Batch to CSV', :articles_LastBatch %>
 
 
